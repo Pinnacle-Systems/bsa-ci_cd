@@ -58,7 +58,7 @@ jobs:
 
             cd ${{ secrets.REMOTE_TARGET }}/apps/backend
 
-            npm ci --production
+            npm ci --omit=dev
             npx prisma generate
             npx prisma migrate deploy
 
