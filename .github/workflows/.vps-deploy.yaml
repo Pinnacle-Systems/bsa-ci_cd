@@ -62,4 +62,4 @@ jobs:
             npx prisma generate
             npx prisma migrate deploy
 
-            pm2 reload ${{ secrets.PM2_APP_NAME }} --update-env || pm2 start server.js --name ${{ secrets.PM2_APP_NAME }}
+            pm2 reload ${{ secrets.PM2_APP_NAME }} --update-env || pm2 start index.js --name ${{ secrets.PM2_APP_NAME }}
