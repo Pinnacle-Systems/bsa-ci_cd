@@ -1,0 +1,11 @@
+node_modules/
+bsa/node_modules/
+dist/
+build/
+.expo/
+coverage/
+package-lock.json
+*.log
+android/
+ios/
+*.html

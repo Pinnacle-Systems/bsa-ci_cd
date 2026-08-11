@@ -1,0 +1,65 @@
+name: Deploy to VPS
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Which environment to deploy'
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.inputs.environment }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy backend source to VPS
+        uses: easingthemes/ssh-deploy@v5.1.0
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-az --stats --delete"
+          SOURCE: "apps/backend/"
+          EXCLUDE: "node_modules/, .env"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}/apps/backend/
+          SCRIPT_BEFORE: |
+            mkdir -p ${{ secrets.REMOTE_TARGET }}/apps/backend
+
+      - name: Run remote install, migrate, and restart
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            set -eu
+
+            . ~/.nvm/nvm.sh
+            nvm install 20
+            nvm use 20
+
+            cd ${{ secrets.REMOTE_TARGET }}/apps/backend
+
+            npm ci --production
+            npx prisma generate
+            npx prisma migrate deploy
+
+            pm2 reload ${{ secrets.PM2_APP_NAME }} --update-env || pm2 start server.js --name ${{ secrets.PM2_APP_NAME }}

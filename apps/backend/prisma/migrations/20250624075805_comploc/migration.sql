@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `location` ADD COLUMN `COMPCODE` VARCHAR(191) NULL;

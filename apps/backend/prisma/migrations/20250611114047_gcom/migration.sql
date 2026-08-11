@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `companycode` ADD COLUMN `GCOMP` VARCHAR(191) NULL;

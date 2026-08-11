@@ -1,0 +1,65 @@
+# .pre-commit-config.yaml (place at project root: C:\MOB\apps/mobile)
+# Backend = root folder itself. Frontend = apps/mobile/ subfolder.
+
+repos:
+  - repo: local
+    hooks:
+      # ---- React Native (apps/mobile/) checks ----
+      - id: eslint-frontend
+        name: ESLint - React Native (apps/mobile)
+        entry: npm --prefix apps/mobile run lint
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: prettier-frontend
+        name: Prettier - React Native (apps/mobile)
+        entry: npm --prefix apps/mobile run format:check
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      # ---- Express backend checks (root folder) ----
+      - id: eslint-backend
+        name: ESLint - Express Backend
+        entry: npm run lint
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: prettier-backend
+        name: Prettier - Express Backend
+        entry: npm run format:check
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: npm-audit-backend
+        name: Backend Dependency Audit
+        entry: npm audit --audit-level=high
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      # ---- Shared check: block console.log (cross-platform Node script) ----
+      - id: no-console-log
+        name: Block console.log (both folders)
+        entry: node scripts/check-console.cjs
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      # ---- Unused files / exports / dependencies check (knip) ----
+      - id: knip-frontend
+        name: Unused Files Check - React Native (apps/mobile)
+        entry: npm --prefix apps/mobile run unused:check
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: knip-backend
+        name: Unused Files Check - Express Backend
+        entry: npm run unused:check
+        language: system
+        pass_filenames: false
+        always_run: true

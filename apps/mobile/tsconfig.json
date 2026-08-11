@@ -1,0 +1,28 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strict": true,
+    "allowJs": true,
+    "noImplicitAny": true,
+    "paths": {
+      "@Component/*": ["./src/components/*"],
+      "@Screens/*": ["./src/screens/*"],
+      "@Utils/*": ["./src/components/Utils/*"],
+      "@UserRoles/*": ["./src/screens/User&roles/*"],
+      "@Auth/*": ["./src/components/Authunticate/*"],
+      "@Constants/*": ["./src/constants/*"],
+      "@Context/*": ["./src/context/*"],
+      "@Redux/*": ["./src/store/*"],
+      "@ReusableComponents/*": ["./src/components/ReusableComponents/*"],
+      "@Navigation/*": ["./src/navigation/*"]
+    },
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "node_modules",
+    "android",
+    "ios",
+    "build"
+  ]
+}

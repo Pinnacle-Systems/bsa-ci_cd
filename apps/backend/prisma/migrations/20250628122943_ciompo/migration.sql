@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `vechilekm` ADD COLUMN `COMPCODE` VARCHAR(191) NULL;

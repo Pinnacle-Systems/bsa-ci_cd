@@ -1,0 +1,31 @@
+### Install dependencies
+
+# Frontend (apps/mobile)
+cd apps/mobile
+npm install --save-dev eslint @react-native/eslint-config eslint-plugin-react-hooks eslint-plugin-react-native prettier
+cd ..
+
+# Backend
+cd backend
+npm install --save-dev eslint eslint-plugin-node eslint-plugin-security prettier
+cd ..
+
+### Install and activate pre-commit
+
+python -m pip install pre-commit
+python -m pre_commit --version
+python -m pre_commit install
+python -m pre_commit run --all-files
+
+
+// backend run this command will fix  (spacing, quotes, semicolons, indentation)
+npx prettier --write .
+
+// identify unused variabel and import
+
+###frontend
+npx eslint --ext .js,.jsx,.ts .  --fix
+
+###backend
+npx eslint --ext .js,.ts . --ignore-pattern apps/mobile/ --fix
+

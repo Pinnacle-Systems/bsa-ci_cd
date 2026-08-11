@@ -1,0 +1,47 @@
+env:
+  node: true
+  es2021: true
+
+parserOptions:
+  ecmaVersion: 2022
+  sourceType: module
+
+extends:
+  - eslint:recommended
+  - plugin:node/recommended
+  - prettier
+
+plugins:
+  - node
+  - security
+  - unused-imports
+
+rules:
+  no-unused-vars: off
+  unused-imports/no-unused-imports: warn
+  unused-imports/no-unused-vars:
+    - warn
+    - vars: all
+      varsIgnorePattern: "^_"
+      args: after-used
+      argsIgnorePattern: "^_"
+  no-console:
+    - warn
+  eqeqeq:
+    - error
+    - always
+  no-eval:
+    - error
+  security/detect-object-injection:
+    - warn
+  security/detect-non-literal-regexp:
+    - warn
+  complexity:
+    - warn
+    - 10
+  max-depth:
+    - warn
+    - 4
+  max-lines-per-function:
+    - warn
+    - 80

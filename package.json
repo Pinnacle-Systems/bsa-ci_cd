@@ -1,0 +1,19 @@
+{
+  "name": "bsa-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "start:backend": "npm start -w apps/backend",
+    "start:mobile": "npm run android -w apps/mobile",
+    "backend:migrate" : "npm run migrate -w apps/backend",
+    "dev": "node scripts/dev.js",
+    "prod": "node scripts/prod.js",
+    "prepare": "husky",
+    "build:apk":"npm run build:android -w apps/mobile",
+    "build:apk:bundle":"npm run build:android:bundle -w apps/mobile"
+     
+  }
+}

@@ -1,0 +1,14 @@
+-- CreateTable
+CREATE TABLE `chat` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `groupId` VARCHAR(191) NULL,
+    `COMPCODE` VARCHAR(191) NULL,
+    `text` VARCHAR(191) NULL,
+    `sender` VARCHAR(191) NULL,
+    `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `chat` ADD CONSTRAINT `chat_sender_fkey` FOREIGN KEY (`sender`) REFERENCES `User`(`Idcard`) ON DELETE SET NULL ON UPDATE CASCADE;

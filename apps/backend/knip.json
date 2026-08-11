@@ -1,0 +1,23 @@
+{
+  "workspaces": {
+    ".": {
+      "entry": [
+        "index.js",
+        "prisma/seed.js",
+        "scripts/**/*.cjs"
+      ],
+      "project": ["src/**/*.js"]
+    },
+    "bsa": {
+      "entry": [
+        "index.js",
+        "App.jsx",
+        "metro.config.js",
+        "babel.config.js",
+        "react-native.config.js",
+        "jest.config.js"
+      ],
+      "project": ["**/*.{js,jsx,ts,tsx}"]
+    }
+  }
+}

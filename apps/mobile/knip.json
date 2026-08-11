@@ -1,0 +1,1 @@
+﻿{ "entry": ["App.jsx"], "project": ["**/*.{js,jsx,ts,tsx,css}"], "ignoreExportsUsedInFile": true }

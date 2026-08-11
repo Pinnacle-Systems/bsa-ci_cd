@@ -1,0 +1,9 @@
+node_modules/
+bsa/node_modules/
+dist/
+build/
+.expo/
+coverage/
+src/generated/
+uploads/
+docs/
