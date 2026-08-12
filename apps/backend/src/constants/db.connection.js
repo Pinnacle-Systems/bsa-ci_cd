@@ -1,7 +1,7 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const oracledb = require("oracledb");
-oracledb.initOracleClient({ libDir: process.env.ORACLE_CLIENT_PATH });
+// oracledb.initOracleClient({ libDir: process.env.ORACLE_CLIENT_PATH });
 // const dbConfig = {
 //       user: "PSSJWIN",
 //       password: "PSSJWIN_OCT2023",

@@ -247,7 +247,7 @@ export async function get(req, res) {
     console.log(err);
     res.status(500).json({ error: "Internal Server Error" });
   } finally {
-    await connection.close();
+    await connection?.close();
   }
 }
 

@@ -58,7 +58,7 @@ jobs:
 
             cd ${{ secrets.REMOTE_TARGET }}/apps/backend
 
-            npm ci --omit=dev --legacy-peer-deps
+            npm install --omit=dev --legacy-peer-deps --frozen-lockfile
             npx prisma generate
             npx prisma migrate deploy
 
